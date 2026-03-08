@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Women's Day Mama</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: Georgia, serif;
+  background: #fdf0f5;
+  color: #5a1a3a;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed; top:0; left:0; right:0;
+  background: rgba(253,232,238,0.96);
+  padding: 14px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid #f2a7b5;
+}
+.navbar .logo { font-size:1.05rem; font-style:italic; color:#8b3a62; }
+.navbar .date { font-size:0.7rem; letter-spacing:2px; color:#c97b9a; font-family:Arial,sans-serif; }
+
+/* PETALS */
+.petal {
+  position: fixed; top:-60px;
+  animation: fall linear infinite;
+  pointer-events: none; z-index:0;
+}
+@keyframes fall {
+  0%   { transform:translateY(0) rotate(0deg); opacity:0.8; }
+  100% { transform:translateY(110vh) rotate(360deg); opacity:0; }
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align: center; padding: 100px 24px 60px;
+  background: linear-gradient(160deg,#fff0f8 0%,#fde8ee 45%,#f0e6ff 100%);
+  position: relative; overflow:hidden;
+}
+.hero-badge {
+  background: rgba(201,123,154,0.15);
+  border: 1px solid #f2a7b5; color:#c97b9a;
+  font-family:Arial,sans-serif; font-size:0.65rem;
+  letter-spacing:3px; text-transform:uppercase;
+  padding:8px 20px; border-radius:50px; margin-bottom:28px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: bold; line-height:1.1; color:#8b3a62;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero h1 em { display:block; font-style:italic; color:#c97b9a; }
+.hero p {
+  font-style:italic; font-size:clamp(1rem,2.5vw,1.3rem);
+  color:#a05575; margin-top:18px; max-width:480px;
+  line-height:1.8; animation: fadeUp 1s 0.2s ease both;
+}
+.hero-hearts { margin-top:30px; font-size:1.5rem; letter-spacing:10px; animation: fadeUp 1s 0.35s ease both; }
+
+/* SECTIONS */
+.section { padding:80px 20px; position:relative; z-index:1; }
+.stag {
+  text-align:center; font-family:Arial,sans-serif;
+  font-size:0.65rem; letter-spacing:3px; text-transform:uppercase;
+  color:#c97b9a; margin-bottom:10px;
+}
+.stitle {
+  text-align:center; font-size:clamp(1.8rem,5vw,2.8rem);
+  font-weight:bold; color:#8b3a62; margin-bottom:48px;
+}
+.stitle em { font-style:italic; color:#c97b9a; }
+
+/* PHOTO SECTION */
+.photo-section { background:linear-gradient(180deg,#fff0f8,#fde8ee); }
+
+.upload-box {
+  max-width:620px; margin:0 auto 40px;
+  border:2px dashed #f2a7b5; border-radius:20px;
+  padding:36px 24px; text-align:center;
+  background:rgba(242,167,181,0.08);
+  cursor:pointer; position:relative; transition:all 0.3s;
+}
+.upload-box:hover { border-color:#c97b9a; background:rgba(201,123,154,0.12); }
+.upload-box input {
+  position:absolute; inset:0; opacity:0;
+  cursor:pointer; width:100%; height:100%;
+}
+.upload-box .ico { font-size:2.8rem; margin-bottom:10px; }
+.upload-box .utitle { font-size:1.1rem; font-weight:bold; color:#8b3a62; margin-bottom:6px; }
+.upload-box .uhint { font-style:italic; font-size:0.95rem; color:#c97b9a; }
+.upload-box .ubtn {
+  display:inline-block; margin-top:16px;
+  background:linear-gradient(135deg,#c97b9a,#8b3a62);
+  color:white; padding:10px 30px; border-radius:50px;
+  font-family:Arial,sans-serif; font-size:0.82rem; letter-spacing:1px;
+  pointer-events:none;
+}
+
+/* PHOTO GRID */
+.photo-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:14px; max-width:840px; margin:0 auto;
+}
+@media(max-width:560px){ .photo-grid{ grid-template-columns:repeat(2,1fr); gap:10px; } }
+
+.pslot {
+  aspect-ratio:1/1; border-radius:18px; overflow:hidden;
+  background:linear-gradient(135deg,#fde8ee,#f0e6ff);
+  border:2px dashed rgba(201,123,154,0.35);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  position:relative; cursor:pointer;
+  transition:transform 0.35s ease, box-shadow 0.35s ease;
+  animation: floatSlot ease-in-out infinite;
+}
+.pslot:nth-child(1){animation-duration:6s;}
+.pslot:nth-child(2){animation-duration:7s;animation-delay:-2s;}
+.pslot:nth-child(3){animation-duration:5.5s;animation-delay:-1s;}
+.pslot:nth-child(4){animation-duration:8s;animation-delay:-3s;}
+.pslot:nth-child(5){animation-duration:6.5s;animation-delay:-4s;}
+.pslot:nth-child(6){animation-duration:7.5s;animation-delay:-1.5s;}
+@keyframes floatSlot{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.pslot:hover { transform:translateY(-18px) scale(1.04) !important; box-shadow:0 20px 50px rgba(139,58,98,0.22); animation-play-state:paused; }
+
+.pslot input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+.sico { font-size:2rem; color:rgba(201,123,154,0.5); pointer-events:none; }
+.slbl { font-size:0.7rem; color:rgba(201,123,154,0.65); margin-top:6px; text-align:center; font-family:Arial,sans-serif; pointer-events:none; }
+
+.simg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.sovr { display:none; }
+.scap { display:none; }
+.sdel { display:none; }
+
+
+
+/* LIGHTBOX */
+.lightbox {
+  display:none; position:fixed; inset:0;
+  background:rgba(50,10,35,0.92);
+  z-index:9999; align-items:center; justify-content:center; padding:20px;
+}
+.lightbox.show { display:flex; }
+.lightbox img { max-width:min(90vw,560px); max-height:82vh; border-radius:16px; object-fit:contain; box-shadow:0 20px 80px rgba(0,0,0,0.6); }
+.lbclose {
+  position:absolute; top:20px; right:20px;
+  background:rgba(255,255,255,0.15); border:none; color:white;
+  width:42px; height:42px; border-radius:50%; font-size:1.1rem;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.lbcap { position:absolute; bottom:28px; left:0; right:0; text-align:center; color:white; font-style:italic; opacity:0.8; }
+
+/* CARDS */
+.cards-section { background:white; }
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px; max-width:940px; margin:0 auto; }
+.card {
+  background:white; border-radius:22px; padding:32px 24px;
+  border:1px solid rgba(242,167,181,0.3);
+  box-shadow:0 4px 24px rgba(201,123,154,0.1);
+  position:relative; overflow:hidden;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+  animation:floatSlot ease-in-out infinite;
+}
+.card:nth-child(1){animation-duration:6s;}
+.card:nth-child(2){animation-duration:7.5s;animation-delay:-2s;}
+.card:nth-child(3){animation-duration:5.5s;animation-delay:-4s;}
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#f2a7b5,#c97b9a,#d4b8d8); }
+.card:hover { transform:translateY(-20px) scale(1.03) !important; box-shadow:0 24px 60px rgba(201,123,154,0.25); animation-play-state:paused; }
+.cemoji { font-size:2.5rem; display:block; margin-bottom:14px; transition:transform 0.3s; }
+.card:hover .cemoji { transform:scale(1.25) rotate(-6deg); }
+.ctitle { font-size:1.2rem; font-weight:bold; color:#8b3a62; margin-bottom:8px; }
+.ctext  { font-style:italic; font-size:1rem; color:#9b5b7a; line-height:1.65; }
+.ctag   { display:inline-block; margin-top:14px; font-family:Arial,sans-serif; font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:#c97b9a; background:rgba(201,123,154,0.1); padding:4px 14px; border-radius:30px; }
+
+/* QUOTES */
+.quote-section { background:#8b3a62; padding:80px 28px; text-align:center; }
+.qtext { font-size:clamp(1.3rem,4vw,2.1rem); font-style:italic; color:white; line-height:1.55; max-width:680px; margin:0 auto 18px; display:none; }
+.qtext.on { display:block; animation:fadeIn 0.6s ease; }
+.qauthor { font-family:Arial,sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:#f2a7b5; margin-bottom:34px; display:none; }
+.qauthor.on { display:block; }
+.qdots { display:flex; justify-content:center; gap:9px; }
+.qdot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.25); cursor:pointer; border:none; transition:background 0.3s,transform 0.3s; }
+.qdot.on { background:#f2a7b5; transform:scale(1.4); }
+
+/* FOOTER */
+footer { padding:70px 20px; background:linear-gradient(135deg,#fde8ee,#f0e6ff); text-align:center; }
+.ftitle { font-size:clamp(2rem,6vw,3.5rem); font-style:italic; color:#8b3a62; margin-bottom:14px; }
+.fsub   { font-style:italic; font-size:1.1rem; color:#c97b9a; margin-bottom:24px; }
+.frow   { font-size:1.4rem; letter-spacing:12px; animation:pulse 2s infinite; }
+.fnote  { margin-top:34px; font-family:Arial,sans-serif; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:rgba(139,58,98,0.35); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+@keyframes pulse  { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* MOBILE */
+@media(max-width:480px){
+  .navbar{padding:12px 16px;}
+  .hero{padding:90px 16px 50px;}
+  .section{padding:60px 14px;}
+  .cards-grid{grid-template-columns:1fr;}
+  footer{padding:50px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb">
+  <button class="lbclose" onclick="closeLB()">✕</button>
+  <img id="lbimg" src="" alt="">
+  <div class="lbcap" id="lbcap"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">For Mama 🌸</div>
+  <div class="date">MARCH 8 · 2026</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ International Women's Day ✦</div>
+  <h1>Happy Women's Day<em>Dear Mama 💗</em></h1>
+  <p>You are my world, my strength, my forever home.<br>This little page is made with all my love for you.</p>
+  <div class="hero-hearts">💗 🌸 💜 🌺 💗</div>
+</section>
+
+<!-- PHOTOS -->
+<section class="section photo-section">
+  <p class="stag reveal">A Gallery of Love</p>
+  <h2 class="stitle reveal">Mama's <em>Beautiful</em> Moments</h2>
+
+  <div class="upload-box reveal" id="uploadBox">
+    <input type="file" id="bulkInput" accept="image/*" multiple>
+    <div class="ico">📸</div>
+    <div class="utitle">Add Photos of Your Mom</div>
+    <div class="uhint">Click here to choose multiple photos at once</div>
+    <div class="ubtn">Choose Photos</div>
+  </div>
+
+  <div class="photo-grid" id="photoGrid"></div>
+</section>
+
+<!-- CARDS -->
+<section class="section cards-section">
+  <p class="stag reveal">A Tribute</p>
+  <h2 class="stitle reveal">What Makes <em>Her</em> Extraordinary</h2>
+  <div class="cards-grid">
+    <div class="card reveal">
+      <span class="cemoji">💪</span>
+      <div class="ctitle">Her Strength</div>
+      <p class="ctext">She carried the weight of the world and still showed up every single day — smiling.</p>
+      <span class="ctag">Resilience</span>
+    </div>
+    <div class="card reveal">
+      <span class="cemoji">🤍</span>
+      <div class="ctitle">Her Love</div>
+      <p class="ctext">Unconditional, unwavering, and bigger than any word could ever capture.</p>
+      <span class="ctag">Love</span>
+    </div>
+    <div class="card reveal">
+      <span class="cemoji">✨</span>
+      <div class="ctitle">Her Magic</div>
+      <p class="ctext">She turned ordinary moments into memories we'll hold forever in our hearts.</p>
+      <span class="ctag">Wonder</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quote-section">
+  <p class="qtext on" id="q0">"A mother's love is the fuel that enables a normal human being to do the impossible."</p>
+  <p class="qauthor on" id="a0">— Marion C. Garretty</p>
+  <p class="qtext" id="q1">"The most beautiful thing in the world is to see your mother smiling."</p>
+  <p class="qauthor" id="a1">— Unknown</p>
+  <p class="qtext" id="q2">"A mother is she who can take the place of all others, but whose place no one else can take."</p>
+  <p class="qauthor" id="a2">— Cardinal Mermillod</p>
+  <p class="qtext" id="q3">"Well-behaved women seldom make history."</p>
+  <p class="qauthor" id="a3">— Laurel Thatcher Ulrich</p>
+  <div class="qdots">
+    <button class="qdot on" onclick="setQ(0)"></button>
+    <button class="qdot" onclick="setQ(1)"></button>
+    <button class="qdot" onclick="setQ(2)"></button>
+    <button class="qdot" onclick="setQ(3)"></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2 class="ftitle reveal">I love you, Mama 🌸</h2>
+  <p class="fsub reveal">Thank you for being my forever superhero.</p>
+  <div class="frow reveal">💗 🌸 💜</div>
+  <p class="fnote reveal">Happy International Women's Day · March 8, 2026</p>
+</footer>
+
+<script>
+// PETALS
+var emojis = ['🌸','🌺','🌷','🌼','💗','✨','🦋'];
+for (var i = 0; i < 18; i++) {
+  var p = document.createElement('span');
+  p.className = 'petal';
+  p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  p.style.left = (Math.random() * 100) + 'vw';
+  p.style.fontSize = (0.8 + Math.random() * 1.0) + 'rem';
+  p.style.animationDuration = (10 + Math.random() * 14) + 's';
+  p.style.animationDelay = (Math.random() * 20) + 's';
+  document.body.appendChild(p);
+}
+
+// PHOTO SLOTS
+var TOTAL = 6;
+var imgs = [];
+var caps = [];
+for (var x = 0; x < TOTAL; x++) { imgs.push(''); caps.push(''); }
+
+function buildGrid() {
+  var grid = document.getElementById('photoGrid');
+  grid.innerHTML = '';
+  // Hide upload box when all slots are filled
+  var uploadBox = document.getElementById('uploadBox');
+  var filled = imgs.filter(function(x){ return x && x !== 'pending'; }).length;
+  uploadBox.style.display = filled >= TOTAL ? 'none' : '';
+  for (var i = 0; i < TOTAL; i++) {
+    buildSlot(i, grid);
+  }
+}
+
+function buildSlot(i, grid) {
+  var slot = document.createElement('div');
+  slot.className = 'pslot';
+
+  if (imgs[i]) {
+    var img = document.createElement('img');
+    img.className = 'simg';
+    img.src = imgs[i];
+    img.alt = 'Mom';
+    img.addEventListener('click', (function(idx){ return function(){ openLB(idx); }; })(i));
+
+    // Caption display only (no edit, no remove, no change)
+    var capDiv = document.createElement('div');
+    capDiv.style.cssText = 'position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(139,58,98,0.82),transparent);padding:22px 12px 10px;color:white;font-family:Georgia,serif;font-style:italic;font-size:0.88rem;text-align:center;opacity:0;transition:opacity 0.3s;';
+    capDiv.textContent = caps[i] || '';
+
+    slot.addEventListener('mouseenter', function(){ capDiv.style.opacity = '1'; });
+    slot.addEventListener('mouseleave', function(){ capDiv.style.opacity = '0'; });
+
+    slot.appendChild(img);
+    slot.appendChild(capDiv);
+  } else {
+    var inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'image/*';
+    inp.addEventListener('change', (function(idx){ return function(e){
+      var file = e.target.files[0];
+      if (!file) return;
+      var r = new FileReader();
+      r.onload = function(ev){ imgs[idx] = ev.target.result; buildGrid(); };
+      r.readAsDataURL(file);
+    }; })(i));
+
+    var ico = document.createElement('div');
+    ico.className = 'sico';
+    ico.textContent = '📷';
+
+    var lbl = document.createElement('div');
+    lbl.className = 'slbl';
+    lbl.innerHTML = 'Tap to add<br>a photo';
+
+    slot.appendChild(inp);
+    slot.appendChild(ico);
+    slot.appendChild(lbl);
+  }
+
+  grid.appendChild(slot);
+}
+
+buildGrid();
+
+// BULK UPLOAD
+document.getElementById('bulkInput').addEventListener('change', function(e) {
+  var files = Array.from(e.target.files);
+  var count = 0;
+  files.forEach(function(file) {
+    var idx = imgs.indexOf('');
+    if (idx === -1) return;
+    imgs[idx] = 'pending';
+    var r = new FileReader();
+    r.onload = (function(i){ return function(ev){
+      imgs[i] = ev.target.result;
+      count++;
+      if (count === files.length) buildGrid();
+    }; })(idx);
+    r.readAsDataURL(file);
+  });
+});
+
+// LIGHTBOX
+function openLB(idx) {
+  document.getElementById('lbimg').src = imgs[idx];
+  document.getElementById('lbcap').textContent = caps[idx] || '';
+  document.getElementById('lb').classList.add('show');
+}
+function closeLB() {
+  document.getElementById('lb').classList.remove('show');
+}
+document.getElementById('lb').addEventListener('click', function(e){
+  if (e.target === this) closeLB();
+});
+
+// QUOTES
+var curQ = 0;
+function setQ(n) {
+  for (var i = 0; i < 4; i++) {
+    document.getElementById('q' + i).classList.remove('on');
+    document.getElementById('a' + i).classList.remove('on');
+    document.querySelectorAll('.qdot')[i].classList.remove('on');
+  }
+  curQ = n;
+  document.getElementById('q' + n).classList.add('on');
+  document.getElementById('a' + n).classList.add('on');
+  document.querySelectorAll('.qdot')[n].classList.add('on');
+}
+setInterval(function(){ setQ((curQ + 1) % 4); }, 4500);
+
+// SCROLL REVEAL
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>
